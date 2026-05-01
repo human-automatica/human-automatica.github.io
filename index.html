@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Automatica</title>
+  <meta name="description" content="Human judgment. Structured intelligence.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .mark {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 2rem;
+    }
+
+    .mark svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .mark rect { display: none; }
+
+    @keyframes colorwave {
+      0%   { color: #e8e8e8; filter: drop-shadow(0 0 0px transparent); }
+      20%  { color: #00E5FF; filter: drop-shadow(0 0 18px rgba(0,229,255,0.5)); }
+      40%  { color: #C9A96E; filter: drop-shadow(0 0 18px rgba(201,169,110,0.4)); }
+      60%  { color: #D4D8F0; filter: drop-shadow(0 0 18px rgba(212,216,240,0.4)); }
+      80%  { color: #e8e8e8; filter: drop-shadow(0 0 0px transparent); }
+      100% { color: #e8e8e8; filter: drop-shadow(0 0 0px transparent); }
+    }
+
+    .mark svg path {
+      fill: currentColor;
+    }
+
+    .mark {
+      animation: colorwave 8s ease-in-out infinite;
+      animation-delay: 4s;
+    }
+
+    h1 {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #e8e8e8;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: #666;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mark">
+    <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M268.967 44C277.522 44.357 288.306 44.0566 297.07 44.0537L354.159 44.1104C365.599 56.9231 377.956 69.8682 389.696 82.4424L435.117 131.186C434.747 156.779 435.022 183.057 435.007 208.701L434.994 381.518C432.654 384.338 429.729 387.306 427.194 389.998L409.004 408.968L354.212 466.905C350.679 467.153 345.242 466.978 341.564 466.98L317.029 466.988L286.768 467.033L286.757 434.238L321.012 434.233C327.752 434.233 335.089 434.368 341.787 434.073C342.637 433.158 343.394 432.153 344.167 431.171C344.574 425.393 344.424 418.553 344.432 412.678L344.521 382.061C359.884 381.861 375.494 382.003 390.877 382.033C394.404 377.788 400.327 372.138 404.269 367.95C404.054 359.16 404.284 349.945 404.294 341.133L404.236 295.251L404.319 144.524L341.919 78.0264C332.444 77.7636 322.259 77.8922 312.771 77.9072H268.947C268.649 73.9237 268.777 68.5892 268.796 64.5332C268.816 57.6886 268.872 50.844 268.967 44ZM242.524 44.0439C242.989 54.8136 242.564 66.9851 242.614 77.9492C221.602 77.601 200.442 78.1285 179.417 77.9482C176.421 77.9227 173.327 78.0688 170.346 77.873C164.862 84.0977 158.171 90.9649 152.451 97.1504L107.913 144.833L107.915 368.163C110.334 370.473 113.605 374.154 115.939 376.644C120.672 381.713 125.435 386.753 130.228 391.763C143.333 405.53 157.62 420.158 170.313 434.218C181.116 434.54 193.405 434.246 204.282 434.206L224.705 434.243L224.689 466.881C202.551 467.038 180.412 467.068 158.273 466.971C155.328 464.526 151.972 460.413 149.21 457.556C142.73 450.941 136.3 444.278 129.92 437.568L77.0331 381.825C77.3968 363.21 77.0569 343.618 77.0633 324.905L77.1102 189.713C77.1394 170.671 76.8295 151.074 77.1376 132.076C81.4925 126.742 87.0077 121.393 91.7362 116.347C114.133 92.4437 136.238 68.2913 158.26 44.04L242.524 44.0439ZM168.76 148.65C170.613 149.34 193.317 173.505 196.611 176.777C205.712 185.819 215.8 196.173 224.733 205.49C224.993 217.71 224.75 230.724 224.746 243.024L224.736 315.926L224.765 355.288C224.761 359.486 224.993 370.576 224.547 374.391C221.004 371.073 217.648 367.613 214.287 364.113C199.258 348.466 183.436 333.253 168.571 317.483L168.556 252.015C168.416 217.56 168.484 183.104 168.76 148.65ZM343.106 149.112C343.529 155.851 343.234 166.22 343.244 173.296L343.231 221.628L343.247 286.229C343.239 296.221 343.566 307.575 343.226 317.405C340.571 320.315 337.501 323.133 334.759 326.003C319.279 342.195 302.778 357.693 287.416 373.973L287.059 373.903C286.76 370.203 287.012 361.401 287.002 357.256L287.015 319.836L286.946 205.357C290.712 201.789 294.485 197.582 298.236 193.912C313.236 179.239 327.674 163.32 342.679 148.722L343.106 149.112Z" fill="#e8e8e8"/>
+    </svg>
+  </div>
+
+  <h1>Human Automatica</h1>
+  <p style="letter-spacing: 0.06em; margin-bottom: 0.5rem;">Human judgment. Structured intelligence.</p>
+  <p>Coming soon</p>
+  <a href="https://github.com/human-automatica" style="display:inline-block; margin-top: 1.5rem; font-size: 0.75rem; color: #444; letter-spacing: 0.08em; text-decoration: none;">github.com/human-automatica</a>
+
+</body>
+</html>
