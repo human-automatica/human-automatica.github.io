@@ -109,6 +109,13 @@
             max-width: 540px;
         }
 
+        .signal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
         .signal-link {
             display: block;
             background: var(--ha-surface);
@@ -116,7 +123,6 @@
             padding: 24px;
             text-decoration: none;
             transition: all 0.2s ease;
-            margin-top: 40px;
             text-align: left;
         }
 
@@ -136,8 +142,9 @@
 
         .signal-link .title {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--ha-text);
+            line-height: 1.4;
         }
 
         footer {
@@ -169,6 +176,12 @@
 
         a:hover {
             text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .signal-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -226,18 +239,24 @@
         </header>
 
         <main class="content">
-            <h2>Why this site looks like a floor.</h2>
+            <h2>Structure before execution.</h2>
             <p>
                 Human Automatica is currently in the grounding layer. I am building the tools, standards, and operating models required to make future products possible. This is setup work. It is the unglamorous preparation that reduces chaos later and creates a place for ideas to land.
             </p>
             <p>
-                The foundation is not the product. It is what makes the product possible.
+                The grounding is not the product. It is what makes the product possible.
             </p>
 
-            <a href="https://github.com/human-automatica/ha-signal" class="signal-link">
-                <span class="label">ha-signal</span>
-                <span class="title">Explore the orientation layer and decision records.</span>
-            </a>
+            <div class="signal-grid">
+                <a href="https://github.com/human-automatica/ha-signal" class="signal-link">
+                    <span class="label">ha-signal</span>
+                    <span class="title">Orientation layer and decision records.</span>
+                </a>
+                <a href="https://github.com/human-automatica" class="signal-link">
+                    <span class="label">Organization</span>
+                    <span class="title">Explore the repository structure and gears.</span>
+                </a>
+            </div>
         </main>
 
         <footer>
