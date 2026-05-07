@@ -1,84 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Human Automatica</title>
-  <meta name="description" content="Human judgment. Structured intelligence.">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Automatica</title>
+    <style>
+        :root {
+            --ha-bg: #0A0A0C;
+            --ha-surface: #141416;
+            --ha-border: #232326;
+            --ha-text: #F2EDE0;
+            --ha-text-muted: #8A8378;
+            --ha-accent: #C7AE7A;
+            --ha-accent-dim: #9E8350;
+            --ha-signal: #6FDDE8;
+            --ha-accent-gradient: linear-gradient(135deg, #8A7340 0%, #C7AE7A 40%, #D4C08A 70%, #B89B5E 100%);
+        }
 
-    body {
-      background: #0a0a0a;
-      color: #e8e8e8;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .mark {
-      width: 96px;
-      height: 96px;
-      margin-bottom: 2rem;
-    }
+        body {
+            background-color: var(--ha-bg);
+            color: var(--ha-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .mark svg {
-      width: 100%;
-      height: 100%;
-    }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
 
-    .mark rect { display: none; }
+        .logo-container {
+            width: 120px;
+            height: 137px;
+            margin: 0 auto 24px;
+        }
 
-    @keyframes colorwave {
-      0%   { color: #e8e8e8; filter: drop-shadow(0 0 0px transparent); }
-      20%  { color: #00E5FF; filter: drop-shadow(0 0 18px rgba(0,229,255,0.5)); }
-      40%  { color: #C9A96E; filter: drop-shadow(0 0 18px rgba(201,169,110,0.4)); }
-      60%  { color: #D4D8F0; filter: drop-shadow(0 0 18px rgba(212,216,240,0.4)); }
-      80%  { color: #e8e8e8; filter: drop-shadow(0 0 0px transparent); }
-      100% { color: #e8e8e8; filter: drop-shadow(0 0 0px transparent); }
-    }
+        .logo-container svg {
+            width: 100%;
+            height: 100%;
+        }
 
-    .mark svg path {
-      fill: currentColor;
-    }
+        .wordmark-container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto 12px;
+            display: flex;
+            justify-content: center;
+        }
 
-    .mark {
-      animation: colorwave 8s ease-in-out infinite;
-      animation-delay: 4s;
-    }
+        .wordmark-container svg {
+            width: 100%;
+            height: auto;
+        }
 
-    h1 {
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #e8e8e8;
-      margin-bottom: 0.75rem;
-    }
+        .tagline {
+            font-size: 0.8rem;
+            color: var(--ha-text-muted);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
 
-    p {
-      font-size: 0.85rem;
-      color: #666;
-      letter-spacing: 0.08em;
-    }
-  </style>
+        .status-badge {
+            display: inline-block;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.65rem;
+            color: var(--ha-signal);
+            background: rgba(111, 221, 232, 0.1);
+            padding: 4px 12px;
+            border-radius: 2px;
+            text-transform: lowercase;
+            margin-bottom: 56px;
+            letter-spacing: 0.05em;
+        }
+
+        .content {
+            text-align: left;
+            margin-bottom: 64px;
+        }
+
+        .content h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--ha-accent);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .content p {
+            font-size: 0.95rem;
+            color: var(--ha-text-muted);
+            margin-bottom: 1.5rem;
+            max-width: 540px;
+        }
+
+        .signal-link {
+            display: block;
+            background: var(--ha-surface);
+            border: 1px solid var(--ha-border);
+            padding: 24px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .signal-link:hover {
+            border-color: var(--ha-accent-dim);
+            background: rgba(199, 174, 122, 0.03);
+        }
+
+        .signal-link .label {
+            display: block;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ha-accent);
+            margin-bottom: 6px;
+        }
+
+        .signal-link .title {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--ha-text);
+        }
+
+        footer {
+            border-top: 1px solid var(--ha-border);
+            padding-top: 40px;
+            text-align: left;
+            width: 100%;
+        }
+
+        footer h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--ha-accent);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--ha-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--ha-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <svg viewBox="0 0 786 895" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="markGrad" x1="0" y1="0" x2="786" y2="895" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#8A7340"/>
+                            <stop offset="40%" stop-color="#C7AE7A"/>
+                            <stop offset="70%" stop-color="#D4C08A"/>
+                            <stop offset="100%" stop-color="#B89B5E"/>
+                        </linearGradient>
+                        <clipPath id="clip0"><rect width="786" height="895" fill="white"/></clipPath>
+                    </defs>
+                    <g clip-path="url(#clip0)">
+                        <path d="M421.331 0C440.11 0.75534 463.776 0.119726 483.012 0.113644L608.312 0.233486C633.42 27.3408 660.544 54.727 686.311 81.3296L786 184.454C785.188 238.601 785.79 294.194 785.757 348.448L785.729 714.069C780.594 720.035 774.175 726.314 768.611 732.01L728.686 772.145L608.427 894.719C600.674 895.243 588.74 894.873 580.668 894.878L526.82 894.895L460.401 894.99L460.375 825.607L535.559 825.597C550.352 825.597 566.457 825.882 581.157 825.258C583.022 823.322 584.685 821.196 586.38 819.117C587.274 806.894 586.947 792.422 586.963 779.993L587.16 715.218C620.878 714.795 655.139 715.096 688.901 715.16C696.643 706.179 709.641 694.226 718.294 685.367C717.822 666.77 718.328 647.274 718.35 628.629L718.223 531.557L718.403 212.675L581.449 71.9881C560.653 71.4322 538.297 71.7043 517.474 71.736H421.288C420.635 63.3084 420.913 52.0219 420.954 43.4408C420.998 28.9601 421.124 14.4794 421.331 0Z" fill="url(#markGrad)"/>
+                        <path d="M363.296 0.0929812C364.315 22.8779 363.384 48.6287 363.493 71.8249C317.375 71.0881 270.93 72.2042 224.784 71.8228C218.209 71.7689 211.42 72.0779 204.877 71.6637C192.841 84.8331 178.153 99.3611 165.599 112.447L67.8488 213.328L67.8509 685.815C73.1613 690.702 80.3413 698.488 85.4645 703.756C95.851 714.482 106.305 725.145 116.826 735.744C145.587 764.871 176.945 795.818 204.806 825.564C228.516 826.246 255.487 825.624 279.359 825.539L324.183 825.617L324.149 894.667C275.56 895.001 226.97 895.064 178.38 894.857C171.916 889.685 164.55 880.984 158.487 874.939C144.266 860.944 130.152 846.847 116.148 832.651L0.072507 714.72C0.870798 675.337 0.124927 633.886 0.138973 594.297L0.241889 308.278C0.305868 267.991 -0.374299 226.532 0.301923 186.338C9.86022 175.052 21.9648 163.736 32.3429 153.059C81.5006 102.489 130.017 51.3917 178.35 0.0847162L363.296 0.0929812Z" fill="url(#markGrad)"/>
+                        <path d="M201.397 221.403C205.469 222.868 255.294 273.987 262.524 280.911C282.499 300.04 304.638 321.945 324.246 341.656C324.816 367.508 324.284 395.042 324.276 421.066L324.316 658.576C324.306 667.456 324.815 690.917 323.836 698.989C316.06 691.971 308.696 684.651 301.319 677.246C268.334 644.142 233.607 611.957 200.981 578.593L200.949 440.086C200.642 367.192 200.792 294.296 201.397 221.403Z" fill="url(#markGrad)"/>
+                        <path d="M584.054 222.382C584.981 236.639 584.334 258.575 584.356 273.545L584.36 512.469C584.344 533.61 585.064 557.633 584.317 578.43C578.49 584.586 571.752 590.547 565.733 596.619C531.757 630.877 495.54 663.664 461.822 698.107L461.042 697.958C460.384 690.13 460.937 671.508 460.915 662.739L460.793 341.375C469.058 333.825 477.339 324.925 485.572 317.161C518.494 286.117 550.184 252.439 583.117 221.554L584.054 222.382Z" fill="url(#markGrad)"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="wordmark-container">
+                <svg viewBox="0 0 3850 171" fill="none" xmlns="http://www.w3.org/2000/svg"><defs>
+    <linearGradient id="wordmarkGrad" x1="0" y1="0" x2="3850" y2="171" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#8A7340"/>
+        <stop offset="40%" stop-color="#C7AE7A"/>
+        <stop offset="70%" stop-color="#D4C08A"/>
+        <stop offset="100%" stop-color="#B89B5E"/>
+    </linearGradient>
+</defs>
+          <path d="M579.14 3.40705H546.116L498.081 165.407H531.105L562.081 53.407L596.092 165.407H622.172L658.081 53.407L689.081 165.407H722.081L718.603 155.666C703.371 107.213 689.012 51.9571 674.081 3.40698H641.081L610.081 110.407L579.14 3.40705Z" fill="url(#wordmarkGrad)"/>
+          <path d="M290.373 110.406C290.373 135.407 305.674 139.405 322.565 139.405C339.456 139.405 355.565 135.408 355.565 110.407V3.40698H386.571L387.565 98.8689C387.565 121.407 386.571 138.613 372.278 152.907C359.376 165.626 340.447 170.266 322.565 170.407C304.683 170.266 286.755 165.626 273.853 152.907C259.559 138.613 258.565 121.407 258.565 98.8689L259.559 3.40698H290.373V110.406Z" fill="url(#wordmarkGrad)"/>
+          <path d="M1639.34 3.22736L1610.89 3.22437L1547.97 165.224H1578.63L1624.27 41.9155L1668.71 165.224C1668.78 165.102 1700.75 165.224 1700.75 165.224L1639.34 3.22736Z" fill="url(#wordmarkGrad)"/>
+          <path d="M912.439 3.28107L883.989 3.27808L821.062 165.278H851.729L897.369 41.9692L941.809 165.278C941.88 165.156 973.849 165.278 973.849 165.278L912.439 3.28107Z" fill="url(#wordmarkGrad)"/>
+          <path d="M29.707 3.40698C29.9408 23.1036 29.9949 45.0444 29.9932 67.4373C52.3971 67.3536 76.5152 67.506 98 67.4626V3.40698H127.707C128.292 52.7143 127.766 116.084 128 165.407H98V97.407H29.9707C29.9392 121.169 29.901 144.545 30 165.407H0V3.40698H29.707Z" fill="url(#wordmarkGrad)"/>
+          <path d="M1190 116.335C1168.33 82.041 1136.25 31.4843 1118 3.40698H1116.71H1087V165.407H1117L1116.85 53.4978L1188.5 165.407H1190.16H1220C1220 165.407 1220.59 52.7143 1220 3.40698H1190V116.335Z" fill="url(#wordmarkGrad)"/>
+          <path d="M2337.87 0.709591C2392.98 -5.61401 2422.19 31.0091 2420.53 83.3561C2419.01 131.173 2409.35 157.89 2358.76 168.156C2315.79 171.305 2280.77 150.673 2275.92 105.577C2270.62 56.1981 2280.12 7.88499 2337.87 0.709591ZM2354.44 141.679C2364.54 140.026 2373.24 135.585 2379.27 127.157C2391.15 110.55 2390.58 80.9151 2387.25 61.3291C2385.39 50.3861 2381.01 39.9691 2371.71 33.3731C2362.91 27.1291 2352.66 26.3001 2342.19 26.7691C2331.55 28.4551 2322.49 31.1501 2315.9 40.2781C2304.66 55.8601 2304.99 86.5481 2308.02 105.053C2309.94 116.734 2314.09 128.016 2324.04 135.142C2333.28 141.754 2343.49 142.326 2354.44 141.679Z" fill="url(#wordmarkGrad)"/>
+          <path d="M2604.06 3.40705H2571.03L2523 165.407H2556.02L2587 53.407L2621.01 165.407H2647.09L2683 53.407L2714 165.407H2747L2743.52 155.666C2728.29 107.213 2713.93 51.9571 2699 3.40698H2666L2635 110.407L2604.06 3.40705Z" fill="url(#wordmarkGrad)"/>
+          <path d="M1841.81 110.406C1841.81 135.407 1857.11 139.405 1874 139.405C1890.89 139.405 1907 135.408 1907 110.407V3.40698H1938.01L1939 98.8689C1939 121.407 1938.01 138.613 1923.71 152.907C1910.81 165.626 1891.88 170.266 1874 170.407C1856.12 170.266 1838.19 165.626 1825.29 152.907C1810.99 138.613 1810 121.407 1810 98.8689L1810.99 3.40698H1841.81V110.406Z" fill="url(#wordmarkGrad)"/>
+          <path d="M2935.82 3.40997L2907.37 3.40698L2844.44 165.407H2875.11L2920.75 42.0981L2965.19 165.407C2965.26 165.285 2997.23 165.407 2997.23 165.407L2935.82 3.40997Z" fill="url(#wordmarkGrad)"/>
+          <path d="M3788.05 2.97491L3759.6 2.97192L3696.67 164.972H3727.34L3772.98 41.663L3817.42 164.972C3817.49 164.85 3849.46 164.972 3849.46 164.972L3788.05 2.97491Z" fill="url(#wordmarkGrad)"/>
+          <path d="M3535.58 0.965993C3546.01 0.279893 3581.29 0.595494 3589.14 10.0964C3591.29 12.7091 3586.5 25.407 3584.22 29.1421C3584.14 29.8371 3581.95 32.0691 3580.94 31.5151C3563.33 28.7641 3545.04 24.3411 3527.32 29.7141C3497.35 38.8031 3497.95 89.8891 3504.98 114.144C3515.4 150.111 3554.5 143.993 3582.06 134.985C3584.99 135.651 3584.09 135.067 3585.75 137.696C3588.04 146.09 3588.88 150.389 3590.04 159.013C3579.63 163.502 3568.61 166.452 3557.34 167.771C3513.86 173.082 3474.51 151.869 3469.93 105.661C3464.68 52.6611 3475.45 8.11379 3535.58 0.965993Z" fill="url(#wordmarkGrad)"/>
+          <path d="M2172.69 2.98901V29.989H2126.4L2126.69 164.989H2096.69V29.989H2050.69V2.98901H2172.69Z" fill="url(#wordmarkGrad)"/>
+          <path d="M3345 165.407C3344.77 116.084 3345.29 52.7144 3344.71 3.40713L3315 3.40698L3315 165.407L3345 165.407Z" fill="url(#wordmarkGrad)"/>
+          <path d="M3201 3.40698V30.407H3154.71L3155 165.407H3125V30.407H3079V3.40698H3201Z" fill="url(#wordmarkGrad)"/>
+          <path d="M673.641 3.28107L652.636 3.27808L606.178 165.278H628.819L662.515 41.9692L695.324 165.278C695.376 165.156 718.979 165.278 718.979 165.278L673.641 3.28107Z" fill="url(#wordmarkGrad)"/>
+        </svg>
+            </div>
+            <p class="tagline">Human judgment. Structured intelligence.</p>
+            <div class="status-badge">[layer-one: grounding]</div>
+        </header>
 
-  <div class="mark">
-    <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M268.967 44C277.522 44.357 288.306 44.0566 297.07 44.0537L354.159 44.1104C365.599 56.9231 377.956 69.8682 389.696 82.4424L435.117 131.186C434.747 156.779 435.022 183.057 435.007 208.701L434.994 381.518C432.654 384.338 429.729 387.306 427.194 389.998L409.004 408.968L354.212 466.905C350.679 467.153 345.242 466.978 341.564 466.98L317.029 466.988L286.768 467.033L286.757 434.238L321.012 434.233C327.752 434.233 335.089 434.368 341.787 434.073C342.637 433.158 343.394 432.153 344.167 431.171C344.574 425.393 344.424 418.553 344.432 412.678L344.521 382.061C359.884 381.861 375.494 382.003 390.877 382.033C394.404 377.788 400.327 372.138 404.269 367.95C404.054 359.16 404.284 349.945 404.294 341.133L404.236 295.251L404.319 144.524L341.919 78.0264C332.444 77.7636 322.259 77.8922 312.771 77.9072H268.947C268.649 73.9237 268.777 68.5892 268.796 64.5332C268.816 57.6886 268.872 50.844 268.967 44ZM242.524 44.0439C242.989 54.8136 242.564 66.9851 242.614 77.9492C221.602 77.601 200.442 78.1285 179.417 77.9482C176.421 77.9227 173.327 78.0688 170.346 77.873C164.862 84.0977 158.171 90.9649 152.451 97.1504L107.913 144.833L107.915 368.163C110.334 370.473 113.605 374.154 115.939 376.644C120.672 381.713 125.435 386.753 130.228 391.763C143.333 405.53 157.62 420.158 170.313 434.218C181.116 434.54 193.405 434.246 204.282 434.206L224.705 434.243L224.689 466.881C202.551 467.038 180.412 467.068 158.273 466.971C155.328 464.526 151.972 460.413 149.21 457.556C142.73 450.941 136.3 444.278 129.92 437.568L77.0331 381.825C77.3968 363.21 77.0569 343.618 77.0633 324.905L77.1102 189.713C77.1394 170.671 76.8295 151.074 77.1376 132.076C81.4925 126.742 87.0077 121.393 91.7362 116.347C114.133 92.4437 136.238 68.2913 158.26 44.04L242.524 44.0439ZM168.76 148.65C170.613 149.34 193.317 173.505 196.611 176.777C205.712 185.819 215.8 196.173 224.733 205.49C224.993 217.71 224.75 230.724 224.746 243.024L224.736 315.926L224.765 355.288C224.761 359.486 224.993 370.576 224.547 374.391C221.004 371.073 217.648 367.613 214.287 364.113C199.258 348.466 183.436 333.253 168.571 317.483L168.556 252.015C168.416 217.56 168.484 183.104 168.76 148.65ZM343.106 149.112C343.529 155.851 343.234 166.22 343.244 173.296L343.231 221.628L343.247 286.229C343.239 296.221 343.566 307.575 343.226 317.405C340.571 320.315 337.501 323.133 334.759 326.003C319.279 342.195 302.778 357.693 287.416 373.973L287.059 373.903C286.76 370.203 287.012 361.401 287.002 357.256L287.015 319.836L286.946 205.357C290.712 201.789 294.485 197.582 298.236 193.912C313.236 179.239 327.674 163.32 342.679 148.722L343.106 149.112Z" fill="#e8e8e8"/>
-    </svg>
-  </div>
+        <main class="content">
+            <h2>Why this site looks like a floor.</h2>
+            <p>
+                Human Automatica is currently in the grounding layer [cite: foundation-vs-product-why-youre-not-selling-yet-v4.md]. I am building the tools, standards, and operating models required to make future products possible [cite: foundation-vs-product-why-youre-not-selling-yet-v4.md]. This is setup work [cite: foundation-vs-product-why-youre-not-selling-yet-v4.md]. It is the unglamorous preparation that reduces chaos later and creates a place for ideas to land [cite: foundation-vs-product-why-youre-not-selling-yet-v4.md].
+            </p>
+            <p>
+                The foundation is not the product [cite: foundation-vs-product-why-youre-not-selling-yet-v4.md]. It is what makes the product possible [cite: foundation-vs-product-why-youre-not-selling-yet-v4.md].
+            </p>
 
-  <h1>Human Automatica</h1>
-  <p style="letter-spacing: 0.06em; margin-bottom: 0.5rem;">Human judgment. Structured intelligence.</p>
-  <p>Coming soon</p>
-  <a href="https://github.com/human-automatica" style="display:inline-block; margin-top: 1.5rem; font-size: 0.75rem; color: #444; letter-spacing: 0.08em; text-decoration: none;">github.com/human-automatica</a>
+            <a href="https://github.com/human-automatica/ha-signal" class="signal-link">
+                <span class="label">ha-signal</span>
+                <span class="title">Explore the orientation layer and decision records.</span>
+            </a>
+        </main>
 
+        <footer>
+            <h3>The door is open.</h3>
+            <p>
+                Most people just nod when I talk about these systems [cite: ha-grill-me-session-2026-05-01.md]. I am looking for the people who actually want to look at the gears [cite: ha-grill-me-session-2026-05-01.md]. If you are curious or seeing the same things, the welcome is real [cite: ha-grill-me-session-2026-05-01.md].
+            </p>
+            <p>
+                <a href="mailto:hello@humanautomatica.com">hello@humanautomatica.com</a>
+            </p>
+        </footer>
+    </div>
 </body>
 </html>
